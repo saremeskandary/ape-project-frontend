@@ -1,8 +1,9 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import abi from "./contract/ABI.json";
 import { BrowserRouter } from "react-router-dom";
+import axios from "axios";
+import abi from "./contract/ABI.json";
+import { load } from "./components/W3functions";
 
 declare global {
   interface Window {
@@ -10,26 +11,35 @@ declare global {
   }
 }
 
-async function getData() {
-  // A Web3Provider wraps a standard Web3 provider, which is
-  // what MetaMask injects as window.ethereum into each page
-  const provider = new ethers.providers.Web3Provider(window.ethereum); //(window as any);
+// TODO get monkey data from IPFS or a website
+// TODO copy uniswap frontend
+// TODO
+// TODO
 
-  // The MetaMask plugin also allows signing transactions to
-  // send ether and pay to change state within the blockchain.
-  // For this, you need the account signer...
-  const signer = provider.getSigner();
-
-  const myContract = new ethers.Contract(
-    "0x29b57e2b404357e65a4f4b46cdc43cea05719e99",
-    abi,
-    signer
-  );
-
-  let infuraProvider = new ethers.providers.InfuraProvider("rinkeby");
-}
+export const apeAddress = "0x29b57e2b404357e65a4f4b46cdc43cea05719e99";
 
 function App() {
+  const [nfts, setNfts] = useState([]);
+  const [loadingState, setLoadingState] = useState(false);
+  const [wallet, setWallet] = useState<string>("not conected");
+  useEffect(() => {
+    load().then(async (a) => setWallet(await a.signer.getAddress()));
+  }, []);
+
+  async function buyMining(MiningType: number, times: number) {
+    const { provider, signer, myContract } = await load();
+    const buyMining = await myContract.buyMining(MiningType, times);
+  }
+
+  // const provider = new ethers.providers.JsonRpcProvider();
+  // const apeContract = new ethers.Contract(apeAddress, abi, provider);
+  // const data = await apeContract.fetchMarketItems(); // FIXME
+
+  async function claim(owned: any) {
+    const { provider, signer, myContract } = await load();
+    const claim = await myContract.claim(owned); //TODO maybe a list
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -41,7 +51,7 @@ function App() {
                 <img src="" alt="gold" />
                 <img src="" alt="silver" />
               </div>
-              <div> my wallet address </div>
+              <div>{wallet}</div>
             </div>
           </div>
         </div>

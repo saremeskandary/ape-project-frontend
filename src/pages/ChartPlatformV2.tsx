@@ -1,10 +1,12 @@
 import React from "react";
 
 const ChartPlatformV2 = () => {
+  // mehtod = claim
+
   const monkeyList = ["monkey one", "monkey onkey two", "monkey three"];
   return (
     <div>
-      <div>
+      <div style={{ overflow: "auto" }}>
         {monkeyList.map((monkey) => {
           return (
             <div>
@@ -13,7 +15,7 @@ const ChartPlatformV2 = () => {
           );
         })}
       </div>
-      
+
       <div>
         <button>Claim</button>
         <div>$VARIABLE EARNED</div>
