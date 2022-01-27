@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Link,
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { load } from "./components/W3functions";
 import UniswapExchangePage from "./pages/UniswapExchangePage";
 import MiningAcceleratorPage from "./pages/MiningAcceleratorPage";
@@ -20,36 +15,20 @@ declare global {
 }
 
 // TODO get monkey data from IPFS or a website
-// TODO copy uniswap frontend
-// TODO
-// TODO
 
 export const apeAddress = "0x29b57e2b404357e65a4f4b46cdc43cea05719e99";
 
 function App() {
-  const [nfts, setNfts] = useState([]);
-  const [loadingState, setLoadingState] = useState(false);
   const [wallet, setWallet] = useState<string>("not conected");
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     load().then(async (a) => setWallet(await a.signer.getAddress()));
   }, []);
 
-  async function buyMining(MiningType: number, times: number) {
-    const { provider, signer, myContract } = await load();
-    const buyMining = await myContract.buyMining(MiningType, times);
-  }
-
   // const provider = new ethers.providers.JsonRpcProvider();
   // const apeContract = new ethers.Contract(apeAddress, abi, provider);
   // const data = await apeContract.fetchMarketItems(); // FIXME
 
-  async function claim(owned: any) {
-    const { provider, signer, myContract } = await load();
-    const claim = await myContract.claim(owned); //TODO maybe a list
-  }
 
   return (
     <div className="App">
@@ -75,39 +54,46 @@ function App() {
           </div>
         </div>
       </header>
-      {window.location.pathname !== "/" && (
-        <Link
-          to={
-            window.location.pathname === "/mining-accelerator"
-              ? "/"
-              : window.location.pathname === "/chart-platform"
-              ? "/mining-accelerator"
-              : ""
-          }
-        >
-          <FaAngleLeft />
-        </Link>
-      )}
-      <Routes>
-        <Route path="/" element={<UniswapExchangePage />} />
-        <Route path="mining-accelerator" element={<MiningAcceleratorPage />} />
-        <Route path="chart-platform" element={<ChartPlatformV2Page />} />
-      </Routes>
-      <div>
-        {window.location.pathname !== "/chart-platform" && (
+      <main className="App-main">
+        {
+          <Link
+            to={
+              window.location.pathname === "/mining-accelerator"
+                ? "/"
+                : window.location.pathname === "/chart-platform"
+                ? "/mining-accelerator"
+                : window.location.pathname === "/"
+                ? "/chart-platform"
+                : ""
+            }
+          >
+            <FaAngleLeft />
+          </Link>
+        }
+        <Routes>
+          <Route path="/" element={<UniswapExchangePage />} />
+          <Route
+            path="mining-accelerator"
+            element={<MiningAcceleratorPage />}
+          />
+          <Route path="chart-platform" element={<ChartPlatformV2Page />} />
+        </Routes>
+        {
           <Link
             to={
               window.location.pathname === "/"
                 ? "/mining-accelerator"
                 : window.location.pathname === "/mining-accelerator"
                 ? "/chart-platform"
+                : window.location.pathname === "/chart-platform"
+                ? "/"
                 : ""
             }
           >
             <FaAngleRight />
           </Link>
-        )}
-      </div>
+        }
+      </main>
     </div>
   );
 }

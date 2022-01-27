@@ -1,6 +1,4 @@
 import React from "react";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { claim } from "../components/W3functions";
 
 const ChartPlatformV2Page = () => {

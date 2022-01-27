@@ -1,12 +1,16 @@
 import React from "react";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import UniswapCard from "../components/UniswapCard";
 
 const UniswapExchangePage = () => {
+  const tokenAddress = '' //TODO add token address
   return (
     <div className="card">
-      <UniswapCard />
+      <iframe
+        className="uniSwap"
+        title="This is a unique title"
+        src={`https://app.uniswap.org/#/swap?outputCurrency=${tokenAddress}`}
+        height="500px"
+        width="100%"
+      />
     </div>
   );
 };
