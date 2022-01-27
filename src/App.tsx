@@ -7,6 +7,7 @@ import ChartPlatformV2Page from "./pages/ChartPlatformV2Page";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import silver from "./assets/images/Silver Diamond-01.png";
 import gold from "./assets/images/Gold Diamond-01.png";
+import title from "./assets/images/The Ape Project Site Logo-01-01.png";
 
 declare global {
   interface Window {
@@ -29,28 +30,21 @@ function App() {
   // const apeContract = new ethers.Contract(apeAddress, abi, provider);
   // const data = await apeContract.fetchMarketItems(); // FIXME
 
-
   return (
     <div className="App">
       <header className="App-header">
-        <div>
-          <div className="App.">The ape project</div>
-          <div>
+        <img src={title} alt="title" height={50} />
+        <div >
+          <div style={{ display: "flex", flexDirection: "row", alignItems:'center'}}>
             <div>
-              <div>
-                <img
-                  src={silver}
-                  alt="Silver"
-                  style={{ width: 100, height: 100 }}
-                />
-                <img
-                  src={gold}
-                  alt="Gold"
-                  style={{ width: 100, height: 100 }}
-                />
-              </div>
-              <div>{wallet}</div>
+              <img
+                src={silver}
+                alt="Silver"
+                style={{ width: 100, height: 100 }}
+              />
+              <img src={gold} alt="Gold" style={{ width: 100, height: 100 }} />
             </div>
+            <div>{wallet}</div>
           </div>
         </div>
       </header>
