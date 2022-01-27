@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.App-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .uniSwap {
   border: 0;
   margin: 0 auto;
