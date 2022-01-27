@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import axios from "axios";
 import abi from "./contract/ABI.json";
 import { load } from "./components/W3functions";
+import UniswapExchangePage from "./pages/UniswapExchangePage";
+import MiningAcceleratorPage from "./pages/MiningAcceleratorPage";
+import ChartPlatformV2Page from "./pages/ChartPlatformV2Page";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 
 declare global {
   interface Window {
@@ -22,6 +32,9 @@ function App() {
   const [nfts, setNfts] = useState([]);
   const [loadingState, setLoadingState] = useState(false);
   const [wallet, setWallet] = useState<string>("not conected");
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     load().then(async (a) => setWallet(await a.signer.getAddress()));
   }, []);
@@ -44,7 +57,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div>
-          <div className="App.">the ape project</div>
+          <div className="App.">The ape project</div>
           <div>
             <div>
               <div>
@@ -56,10 +69,38 @@ function App() {
           </div>
         </div>
       </header>
-
+      {window.location.pathname !== "/" && (
+        <Link
+          to={
+            window.location.pathname === "/mining-accelerator"
+              ? "/"
+              : window.location.pathname === "/chart-platform"
+              ? "/mining-accelerator"
+              : ""
+          }
+        >
+          <FaAngleLeft />
+        </Link>
+      )}
+      <Routes>
+        <Route path="/" element={<UniswapExchangePage />} />
+        <Route path="mining-accelerator" element={<MiningAcceleratorPage />} />
+        <Route path="chart-platform" element={<ChartPlatformV2Page />} />
+      </Routes>
       <div>
-        <button>arrow left</button>
-        <button>arrow right</button>
+        {window.location.pathname !== "/chart-platform" && (
+          <Link
+            to={
+              window.location.pathname === "/"
+                ? "/mining-accelerator"
+                : window.location.pathname === "/mining-accelerator"
+                ? "/chart-platform"
+                : ""
+            }
+          >
+            <FaAngleRight />
+          </Link>
+        )}
       </div>
     </div>
   );
