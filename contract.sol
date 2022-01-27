@@ -164,8 +164,6 @@ function getClaimAmount(address user,uint256[] memory owned) public view returns
       amount=amount*5/2;
     }
     return amount;
-    
-
 }
     function getOwned(address user,uint256 lastId) public view returns (uint256){
   require(hidden==false,"Apes Not Revealed Yet");

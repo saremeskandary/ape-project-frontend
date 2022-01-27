@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
 import {
-  BrowserRouter,
   Link,
   Route,
   Routes,
   useNavigate,
 } from "react-router-dom";
-import axios from "axios";
-import abi from "./contract/ABI.json";
 import { load } from "./components/W3functions";
 import UniswapExchangePage from "./pages/UniswapExchangePage";
 import MiningAcceleratorPage from "./pages/MiningAcceleratorPage";
 import ChartPlatformV2Page from "./pages/ChartPlatformV2Page";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import silver from "./assets/images/Silver Diamond-01.png";
+import gold from "./assets/images/Gold Diamond-01.png";
 
 declare global {
   interface Window {
@@ -61,8 +59,16 @@ function App() {
           <div>
             <div>
               <div>
-                <img src="" alt="gold" />
-                <img src="" alt="silver" />
+                <img
+                  src={silver}
+                  alt="Silver"
+                  style={{ width: 100, height: 100 }}
+                />
+                <img
+                  src={gold}
+                  alt="Gold"
+                  style={{ width: 100, height: 100 }}
+                />
               </div>
               <div>{wallet}</div>
             </div>

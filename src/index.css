@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.uniSwap{
+  border: 0; margin: 0 auto; display: block; border-radius: 10px; max-width: 600px; min-width: 300px;
+}
+
+.App {
+  border: 5px solid #ffff00;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

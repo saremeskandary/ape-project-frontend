@@ -1,11 +1,15 @@
 import React from "react";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { claim } from "../components/W3functions";
 
-const ChartPlatformV2 = () => {
+const ChartPlatformV2Page = () => {
   // mehtod = claim
-
+  //TODO get list of user apes
   const monkeyList = ["monkey one", "monkey onkey two", "monkey three"];
+
   return (
-    <div>
+    <div className="card">
       <div style={{ overflow: "auto" }}>
         {monkeyList.map((monkey) => {
           return (
@@ -17,7 +21,13 @@ const ChartPlatformV2 = () => {
       </div>
 
       <div>
-        <button>Claim</button>
+        <button
+          onClick={() => {
+            claim(monkeyList); // add list of apes for claiming
+          }}
+        >
+          Claim
+        </button>
         <div>$VARIABLE EARNED</div>
         <div>1,000,000</div>
       </div>
@@ -25,4 +35,4 @@ const ChartPlatformV2 = () => {
   );
 };
 
-export default ChartPlatformV2;
+export default ChartPlatformV2Page;

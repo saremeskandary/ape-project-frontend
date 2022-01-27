@@ -26,20 +26,20 @@ export async function load() {
   );
 
   let symbol = await myContract.symbol();
-  console.log("symbol =", symbol);
-  console.log("signer =", signer);
 
   return { provider, signer, myContract };
 }
 
 export async function buyMining(MiningType: number, times: number) {
-  const { provider, signer, myContract } = await load();
+  const { myContract } = await load();
   const buyMining = await myContract.buyMining(MiningType, times);
+  return (buyMining)
 }
 
-export async function claim(owned: any) {
-  const { provider, signer, myContract } = await load();
+export async function claim(owned: string[]) {
+  const { myContract } = await load();
   const claim = await myContract.claim(owned); //TODO maybe a list
+  return claim;
 }
 
 // TODO get all userNFTs that it can claim
