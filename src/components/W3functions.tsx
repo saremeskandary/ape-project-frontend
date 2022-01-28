@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers, Signer } from "ethers";
 import Web3Modal from "web3modal";
 import abi from "../contract/ABI.json";
 
@@ -26,6 +26,11 @@ export async function load() {
   );
 
   let symbol = await myContract.symbol();
+  const address = await signer.getAddress();
+  let balance = await myContract.balanceOf(address);
+  balance > 0
+    ? console.log("you are NFT owner")
+    : console.log("you are not owner"); 
 
   return { provider, signer, myContract };
 }
@@ -33,11 +38,14 @@ export async function load() {
 export async function buyMining(MiningType: number, times: number) {
   const { myContract } = await load();
   const buyMining = await myContract.buyMining(MiningType, times);
-  return (buyMining)
+  return buyMining;
 }
 
 export async function claim(owned: string[]) {
-  const { myContract } = await load();
+  let tokens = [];
+  const { signer, myContract } = await load();
+  
+  let objects = [];
   const claim = await myContract.claim(owned); //TODO maybe a list
   return claim;
 }
