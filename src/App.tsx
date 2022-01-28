@@ -61,7 +61,7 @@ function App() {
                 : ""
             }
           >
-            <FaAngleLeft />
+            <FaAngleLeft size={100}/>
           </Link>
         }
         <Routes>
@@ -84,7 +84,7 @@ function App() {
                 : ""
             }
           >
-            <FaAngleRight />
+            <FaAngleRight size={100}/>
           </Link>
         }
       </main>
