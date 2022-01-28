@@ -3,7 +3,11 @@ import { claim } from "../components/W3functions";
 
 const ChartPlatformV2Page = () => {
   // mehtod = claim
-  //TODO get list of user apes
+  //TODO get list of users apes
+  //TODO with list of users apes get pictures from API or IPFS
+  // 1. what is the user apes methed name?
+  // 2. what is the API of apes picturs?
+
   const monkeyList = ["monkey one", "monkey onkey two", "monkey three"];
 
   return (

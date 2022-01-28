@@ -43,7 +43,7 @@ export async function buyMining(MiningType: number, times: number) {
 
 export async function claim(owned: string[]) {
   let tokens = [];
-  const { signer, myContract } = await load();
+  const { myContract } = await load();
   
   let objects = [];
   const claim = await myContract.claim(owned); //TODO maybe a list

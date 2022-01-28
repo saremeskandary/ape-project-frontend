@@ -69,7 +69,7 @@ bool private preSale=true;
 
 
 function buyMining(uint256 MiningType,uint256 times) public {
-   if(MiningType==1){
+  if(MiningType==1){
  require( IERC20(variableToken).balanceOf(msg.sender)>(MiningPrice/2)*times,"Not Enough Variable Token To Buy Equipment");
  IERC20(variableToken).transferFrom(msg.sender,address(this),times*(MiningPrice/2));
  MiningEquipment[msg.sender].useSilver=MiningEquipment[msg.sender].useSilver+times;
