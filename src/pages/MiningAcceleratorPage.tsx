@@ -12,14 +12,14 @@ const MiningAcceleratorPage = () => {
         <MiningCard
           image={silver}
           onClick={() => {
-            buyMining(1, 1);
-          }} //TODO change args to silver number
+            buyMining(1, 1); //FIXME in buyMining we have 2 parameter second one is times I chose 1
+          }}
         />
         <MiningCard
           image={gold}
           onClick={() => {
-            buyMining(1, 1);
-          }} //TODO change args to Gold number
+            buyMining(2, 1);
+          }}
         />
       </div>
     </div>
