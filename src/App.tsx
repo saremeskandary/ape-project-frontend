@@ -33,16 +33,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={title} alt="title" height={50} />
+        <img src={title} alt="title" height="40vw" />
         <div >
           <div style={{ display: "flex", flexDirection: "row", alignItems:'center'}}>
             <div>
               <img
                 src={silver}
                 alt="Silver"
-                style={{ width: 100, height: 100 }}
+                style={{ width: '3vw', height: 'auto' }}
               />
-              <img src={gold} alt="Gold" style={{ width: 100, height: 100 }} />
+              <img src={gold} alt="Gold" style={{ width: '3vw', height: 'auto' }} />
             </div>
             <div>{wallet}</div>
           </div>
@@ -61,7 +61,7 @@ function App() {
                 : ""
             }
           >
-            <FaAngleLeft size={100}/>
+            <FaAngleLeft size={100} color="gray" />
           </Link>
         }
         <Routes>
@@ -84,7 +84,7 @@ function App() {
                 : ""
             }
           >
-            <FaAngleRight size={100}/>
+            <FaAngleRight size={100} color="gray" />
           </Link>
         }
       </main>

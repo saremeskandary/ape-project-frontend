@@ -5,13 +5,13 @@ interface IMiningCard {
 }
 function MiningCard({ image, onClick }: IMiningCard) {
   return (
-    <div>
+    <div className="mining-card">
       <img
         src={image}
         alt="miningAccelerator"
-        style={{ width: 100, height: 100 }}
+        style={{ width: '20vw', height: '50vh', objectFit:'contain' }}
       />
-      <button onClick={onClick}>buy</button>
+      <button onClick={onClick} className="mining-btn">BUY</button>
     </div>
   );
 }
