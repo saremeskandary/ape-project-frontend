@@ -14,14 +14,16 @@ const ChartPlatformV2Page = () => {
 
   return (
     <div className="card" style={{flexDirection:'column', justifyContent:'center'}}>
-      <div className="monkey-list">
-        {monkeyList.map((monkey) => {
-          return (
-            <div>
-              <img src={tempMonkeyImg} alt={monkey} className="monkey-img" />
-            </div>
-          );
-        })}
+      <div className="monkey-container">
+        <div className="monkey-list">
+          {monkeyList.map((monkey) => {
+            return (
+              <div>
+                <img src={tempMonkeyImg} alt={monkey} className="monkey-img" />
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className="claim-container">

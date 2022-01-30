@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={title} alt="title" height="40vw" />
+        <img src={title} alt="title" className="logo" />
         <div >
           <div style={{ display: "flex", flexDirection: "row", alignItems:'center'}}>
             <div>
@@ -62,14 +62,14 @@ function App() {
               />
               <img src={gold} alt="Gold" style={{ width: '3vw', height: 'auto' }} />
             </div>
-            <div>{wallet}</div>
+            <div style={{fontSize:'0.7em', color:'white', paddingRight:'1vw'}}>{wallet}</div>
           </div>
         </div>
       </header>
       <main className="App-main">
         {
           <Link to={previousPage}>
-            <FaAngleLeft size={100} color="gray" />
+            <FaAngleLeft size='7vw' color="gray" />
           </Link>
         }
         <Routes>
@@ -82,7 +82,7 @@ function App() {
         </Routes>
         {
           <Link to={nextPage}>
-            <FaAngleRight size={100} color="gray" />
+            <FaAngleRight size='7vw' color="gray" />
           </Link>
         }
       </main>

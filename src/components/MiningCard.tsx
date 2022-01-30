@@ -9,7 +9,7 @@ function MiningCard({ image, onClick }: IMiningCard) {
       <img
         src={image}
         alt="miningAccelerator"
-        style={{ width: '20vw', height: '50vh', objectFit:'contain' }}
+        style={{ width: '23vw', height: 'auto', minWidth:150 }}
       />
       <button onClick={onClick} className="mining-btn">BUY</button>
     </div>
