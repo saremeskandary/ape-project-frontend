@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { load } from "./components/W3functions";
 import UniswapExchangePage from "./pages/UniswapExchangePage";
 import MiningAcceleratorPage from "./pages/MiningAcceleratorPage";
@@ -21,6 +21,26 @@ export const apeAddress = "0x29b57e2b404357e65a4f4b46cdc43cea05719e99";
 
 function App() {
   const [wallet, setWallet] = useState<string>("not conected");
+  const [previousPage, setPreviousPage] = useState<string>('/');
+  const [nextPage, setNextPage] = useState<string>('/');
+  const { pathname } = useLocation();
+
+  console.log('path',pathname);
+
+  useEffect(()=>{
+  
+    switch (pathname) {
+      case '/': setPreviousPage('/chart-platform'); setNextPage('/mining-accelerator');
+        break;
+      case '/mining-accelerator': setPreviousPage('/'); setNextPage('/chart-platform');
+        break;  
+      case '/chart-platform': setPreviousPage('/mining-accelerator'); setNextPage('/')
+        break; 
+      default: setPreviousPage('/'); setNextPage('/');
+        break;
+    }
+
+  },[pathname])
 
   useEffect(() => {
     load().then(async (a) => setWallet(await a.signer.getAddress()));
@@ -50,40 +70,20 @@ function App() {
       </header>
       <main className="App-main">
         {
-          <Link
-            to={
-              window.location.pathname === "/mining-accelerator"
-                ? "/"
-                : window.location.pathname === "/chart-platform"
-                ? "/mining-accelerator"
-                : window.location.pathname === "/"
-                ? "/chart-platform"
-                : ""
-            }
-          >
+          <Link to={previousPage}>
             <FaAngleLeft size={100} color="gray" />
           </Link>
         }
         <Routes>
           <Route path="/" element={<UniswapExchangePage />} />
           <Route
-            path="mining-accelerator"
+            path="/mining-accelerator"
             element={<MiningAcceleratorPage />}
           />
-          <Route path="chart-platform" element={<ChartPlatformV2Page />} />
+          <Route path="/chart-platform" element={<ChartPlatformV2Page />} />
         </Routes>
         {
-          <Link
-            to={
-              window.location.pathname === "/"
-                ? "/mining-accelerator"
-                : window.location.pathname === "/mining-accelerator"
-                ? "/chart-platform"
-                : window.location.pathname === "/chart-platform"
-                ? "/"
-                : ""
-            }
-          >
+          <Link to={nextPage}>
             <FaAngleRight size={100} color="gray" />
           </Link>
         }
