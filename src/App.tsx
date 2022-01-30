@@ -25,8 +25,6 @@ function App() {
   const [nextPage, setNextPage] = useState<string>('/');
   const { pathname } = useLocation();
 
-  console.log('path',pathname);
-
   useEffect(()=>{
   
     switch (pathname) {
